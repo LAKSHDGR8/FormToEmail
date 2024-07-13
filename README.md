@@ -20,7 +20,7 @@ This is a Flask application that allows users to send emails about lost items us
 Clone this repository to your local machine using:
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
+git clone https://github.com/LAKSHDGR8/FormToEmail.git
 cd your-repo-name
 ```
 ### Step 2: Set Up a Virtual Environment
