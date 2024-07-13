@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Item Notification</title>
+</head>
+<body>
+    <h1>Lost Item Notification</h1>
+    <form action="{{ url_for('send_email') }}" method="post">
+        <label for="recipient">Recipient:</label><br>
+        <input type="email" id="recipient" name="recipient" required><br><br>
+
+        <label for="description">Description (colour, case colour or design etc.):</label><br>
+        <input type="text" id="description" name="description" required><br><br>
+
+        <label for="model">Brand and Model:</label><br>
+        <input type="text" id="model" name="model" required><br><br>
+
+        <label for="item">Item:</label><br>
+        <input type="text" id="item" name="item" required><br><br>
+
+        <label for="location">Location Lost:</label><br>
+        <select id="location" name="location" required>
+            <option value="Admin block">Admin block</option>
+            <option value="GJB">GJB</option>
+            <option value="DJB">DJB</option>
+            <option value="NRN">NRN</option>
+            <option value="North Campus">North Campus</option>
+            <option value="Campus">Campus</option>
+        </select><br><br>
+
+        <label for="date">Date Lost:</label><br>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <label for="sender_phone">Your Phone Number:</label><br>
+        <input type="text" id="sender_phone" name="sender_phone" required><br><br>
+
+        <label for="sender_email">Your Email ID:</label><br>
+        <input type="email" id="sender_email" name="sender_email" required><br><br>
+
+        <label for="name">Your Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="semester">Semester:</label><br>
+        <select id="semester" name="semester" required>
+            <option value="I">I</option>
+            <option value="II">II</option>
+            <option value="III">III</option>
+            <option value="IV">IV</option>
+            <option value="V">V</option>
+            <option value="VI">VI</option>
+            <option value="VII">VII</option>
+            <option value="VIII">VIII</option>
+        </select><br><br>
+
+        <label for="section">Section:</label><br>
+        <select id="section" name="section" required>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select><br><br>
+
+        <input type="submit" value="Send Email">
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
