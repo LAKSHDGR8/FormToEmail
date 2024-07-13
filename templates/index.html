@@ -4,75 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lost Item Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+            color: #555;
+        }
+        input[type="text"], input[type="email"], input[type="date"], select, textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+        textarea {
+            resize: vertical;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .message {
+            margin-top: 20px;
+            color: red;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Lost Item Notification</h1>
-    <form action="{{ url_for('send_email') }}" method="post">
-        <label for="recipient">Recipient:</label><br>
-        <input type="email" id="recipient" name="recipient" required><br><br>
+    <div class="container">
+        <h1>Lost Item Notification</h1>
+        <form action="{{ url_for('send_email') }}" method="post">
+            <label for="recipient">Recipient:</label>
+            <input type="email" id="recipient" name="recipient" required>
 
-        <label for="description">Description (colour, case colour or design etc.):</label><br>
-        <input type="text" id="description" name="description" required><br><br>
+            <label for="description">Description (colour, case colour or design etc.):</label>
+            <input type="text" id="description" name="description" required>
 
-        <label for="model">Brand and Model:</label><br>
-        <input type="text" id="model" name="model" required><br><br>
+            <label for="model">Brand and Model:</label>
+            <input type="text" id="model" name="model" required>
 
-        <label for="item">Item:</label><br>
-        <input type="text" id="item" name="item" required><br><br>
+            <label for="item">Item:</label>
+            <input type="text" id="item" name="item" required>
 
-        <label for="location">Location Lost:</label><br>
-        <select id="location" name="location" required>
-            <option value="Admin block">Admin block</option>
-            <option value="GJB">GJB</option>
-            <option value="DJB">DJB</option>
-            <option value="NRN">NRN</option>
-            <option value="North Campus">North Campus</option>
-            <option value="Campus">Campus</option>
-        </select><br><br>
+            <label for="location">Location Lost:</label>
+            <select id="location" name="location" required>
+                <option value="Admin block">Admin block</option>
+                <option value="GJB">GJB</option>
+                <option value="DJB">DJB</option>
+                <option value="NRN">NRN</option>
+                <option value="North Campus">North Campus</option>
+                <option value="Campus">Campus</option>
+            </select>
 
-        <label for="date">Date Lost:</label><br>
-        <input type="date" id="date" name="date" required><br><br>
+            <label for="date">Date Lost:</label>
+            <input type="date" id="date" name="date" required>
 
-        <label for="sender_phone">Your Phone Number:</label><br>
-        <input type="text" id="sender_phone" name="sender_phone" required><br><br>
+            <label for="sender_phone">Your Phone Number:</label>
+            <input type="text" id="sender_phone" name="sender_phone" required>
 
-        <label for="sender_email">Your Email ID:</label><br>
-        <input type="email" id="sender_email" name="sender_email" required><br><br>
+            <label for="sender_email">Your Email ID:</label>
+            <input type="email" id="sender_email" name="sender_email" required>
 
-        <label for="name">Your Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
 
-        <label for="semester">Semester:</label><br>
-        <select id="semester" name="semester" required>
-            <option value="I">I</option>
-            <option value="II">II</option>
-            <option value="III">III</option>
-            <option value="IV">IV</option>
-            <option value="V">V</option>
-            <option value="VI">VI</option>
-            <option value="VII">VII</option>
-            <option value="VIII">VIII</option>
-        </select><br><br>
+            <label for="semester">Semester:</label>
+            <select id="semester" name="semester" required>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+                <option value="VI">VI</option>
+                <option value="VII">VII</option>
+                <option value="VIII">VIII</option>
+            </select>
 
-        <label for="section">Section:</label><br>
-        <select id="section" name="section" required>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-        </select><br><br>
+            <label for="section">Section:</label>
+            <select id="section" name="section" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
 
-        <input type="submit" value="Send Email">
-    </form>
+            <input type="submit" value="Send Email">
+        </form>
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="message">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
 </body>
 </html>
