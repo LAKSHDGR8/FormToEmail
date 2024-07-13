@@ -1,17 +1,24 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mail import Mail, Message
+import logging
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
 # Configuration for Flask-Mail
-app.config['MAIL_SERVER'] = 'smtp.your-email-provider.com'
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'your-email@example.com'
-app.config['MAIL_PASSWORD'] = 'your-email-password'
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'lakshshetty16@gmail.com'
+app.config['MAIL_PASSWORD'] = 'yqkc crcg hgsc jmfj'
 
 mail = Mail(app)
+
+# Enable logging for Flask-Mail
+mail_logger = logging.getLogger('flask_mail')
+mail_logger.setLevel(logging.DEBUG)
+mail_logger.addHandler(logging.StreamHandler())
 
 @app.route('/')
 def index():
@@ -53,6 +60,7 @@ def send_email():
             flash('Email sent successfully!')
         except Exception as e:
             flash(f'Failed to send email: {str(e)}')
+            print(f'Failed to send email: {str(e)}')  # Additional logging for debugging
 
         return redirect(url_for('index'))
 
